@@ -10,6 +10,14 @@
 #define MOUSE 5
 #define SCROLL 6
 
+/ {
+    /* 1/2 の量に減らす設定 */
+    my_enc_scaler: my_enc_scaler {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        multiplier = <1 2>; // ここを <1 4> などにするともっと小さくなります
+    };
+};
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
