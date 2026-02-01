@@ -19,6 +19,7 @@
     };
 };
 
+/ {
     encoder_left_listener: encoder_left_listener {
         compatible = "zmk,input-listener";
         device = <&left_encoder>; 
