@@ -1,7 +1,7 @@
 if SHIELD_MONA2_R
 
 config ZMK_KEYBOARD_NAME
-    default "mona2"
+    default "mona2_19mm"
 
 config ZMK_BLE
     default y
