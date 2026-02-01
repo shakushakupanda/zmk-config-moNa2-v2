@@ -111,19 +111,6 @@
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder &right_encoder>;
-        triggers-per-rotation = <24>;
+        triggers-per-rotation = <8>;
     };
-
-    encoder_left_listener: encoder_left_listener {
-        compatible = "zmk,input-listener";
-        device = <&left_encoder>;
-        status = "okay";
-
-        input-processors = 
-            // 回転をスクロール信号に変換
-            <&zip_xy_to_scroll_mapper>, 
-            // ★ここでヌルヌル感を調整！ 1 10 なら 1/10 の細かさで動く
-            <&zip_scroll_scaler 1 10>; 
-    };
-
 };
