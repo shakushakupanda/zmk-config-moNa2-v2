@@ -14,7 +14,7 @@
     my_enc_scaler: my_enc_scaler {
         compatible = "zmk,input-processor-scaler";
         #input-processor-cells = <2>;
-        multiplier = <1 2>; 
+        factor = <1 2>; 
         type = <INPUT_REL_WHEEL>;
         codes = <INPUT_REL_WHEEL>; // typeと同じ値をcodesにも指定
     };
