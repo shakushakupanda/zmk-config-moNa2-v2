@@ -176,9 +176,6 @@
 &kp RCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 2 GRAVE  &lt 4 SPACE  &lt 6 MINUS    &kp ENTER      &kp BACKSPACE                             &kp RIGHT_SHIFT
             >;
 
-            sensor-bindings =
-                <&scroll_up_down>,
-                <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         mac_layer {
@@ -189,9 +186,6 @@
 &kp LEFT_GUI      &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 GRAVE  &lt 5 SPACE  &lt 7 MINUS    &kp ENTER      &kp BACKSPACE                             &kp RIGHT_SHIFT
             >;
 
-            sensor-bindings =
-                <&scroll_up_down>,
-                <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         num_win {
@@ -202,7 +196,6 @@
 &kp LCTRL   &kp LEFT_GUI          &kp LEFT_ALT           &trans            &trans             &trans    &kp ENTER    &kp BACKSPACE                                            &kp RIGHT_SHIFT
             >;
 
-            sensor-bindings = <&scroll_up_down>;
         };
 
         num_mac {
@@ -213,7 +206,6 @@
 &kp LEFT_GUI  &kp LEFT_GUI          &kp LEFT_ALT           &trans            &trans             &trans    &kp ENTER    &kp BACKSPACE                                            &kp RIGHT_SHIFT
             >;
 
-            sensor-bindings = <&scroll_up_down>;
         };
 
         mouse_win {
