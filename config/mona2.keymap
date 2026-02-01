@@ -16,7 +16,8 @@
         compatible = "zmk,input-processor-scaler";
         #input-processor-cells = <2>;
         multiplier = <1 2>; // ここを <1 4> などにするともっと小さくなります
-    };
+        type = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+　　};
 };
 
 / {
