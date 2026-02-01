@@ -63,7 +63,8 @@
     device = <&trackball_central>;
 
     // ▼ ここに追加：通常時（全レイヤー共通）の挙動設定
-    input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>;
+    input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
+                       <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>;
 
     scroller {
         layers = <6 7>;
