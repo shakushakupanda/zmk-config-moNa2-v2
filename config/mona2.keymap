@@ -9,6 +9,21 @@
 
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
 
+// 2. keymapのどこかに以下を記述
+&encoder_left_listener {
+    status = "okay";
+    device = <&left_encoder>;
+
+    input-processors = 
+        <&zip_xy_to_scroll_mapper>, // 回転をスクロール信号に変換
+        <&zip_scroll_scaler 1 10>;  // ZMK標準のスクロール用スケーラー（1/10に減速）
+};
+
+// 3. エンコーダ本体を有効化
+&left_encoder {
+    status = "okay";
+};
+
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
