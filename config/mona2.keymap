@@ -16,6 +16,7 @@
         #input-processor-cells = <2>;
         multiplier = <1 2>; 
         type = <INPUT_REL_WHEEL>;
+        codes = <INPUT_REL_WHEEL>; // typeと同じ値をcodesにも指定
     };
 };
 
