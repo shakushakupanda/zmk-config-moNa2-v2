@@ -9,7 +9,6 @@
 
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
 
-
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
@@ -123,6 +122,7 @@
             compatible = "zmk,behavior-sensor-rotate-var";
             #sensor-binding-cells = <2>;
             bindings = <&msc>, <&msc>;
+
             tap-ms = <20>;
         };
 
@@ -173,7 +173,7 @@
 &kp RCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 2 GRAVE  &lt 4 SPACE  &lt 6 MINUS    &kp ENTER      &kp BACKSPACE                             &kp RIGHT_SHIFT
             >;
 
-        sensor-bindings = <&scroll_up_down SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&scroll_up_down SCRL_DOWN SCRL_UP>;
         };
 
         mac_layer {
@@ -184,7 +184,7 @@
 &kp LEFT_GUI      &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 GRAVE  &lt 5 SPACE  &lt 7 MINUS    &kp ENTER      &kp BACKSPACE                             &kp RIGHT_SHIFT
             >;
 
-        sensor-bindings = <&scroll_up_down SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&scroll_up_down SCRL_DOWN SCRL_UP>;
         };
 
         num_win {
@@ -195,7 +195,7 @@
 &kp LCTRL   &kp LEFT_GUI          &kp LEFT_ALT           &trans            &trans             &trans    &kp ENTER    &kp BACKSPACE                                            &kp RIGHT_SHIFT
             >;
 
-        sensor-bindings = <&scroll_up_down SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&scroll_up_down SCRL_DOWN SCRL_UP>;
         };
 
         num_mac {
@@ -206,15 +206,15 @@
 &kp LEFT_GUI  &kp LEFT_GUI          &kp LEFT_ALT           &trans            &trans             &trans    &kp ENTER    &kp BACKSPACE                                            &kp RIGHT_SHIFT
             >;
 
-        sensor-bindings = <&scroll_up_down SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&scroll_up_down SCRL_DOWN SCRL_UP>;
         };
 
         mouse_win {
             bindings = <
-&kp ESCAPE                  &kp LC(Z)       &kp UP_ARROW    &kp LC(Y)        &kp LC(V)                                  &kp CARET         &kp AMPERSAND      &mkp MB3        &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp TAB                     &kp LEFT_ARROW  &screenshot     &kp RIGHT_ARROW  &kp ASTERISK               &kp UNDERSCORE  &kp EXCLAMATION   &mkp MB1           &mo 6           &mkp MB2              &henkan
-&mt LEFT_SHIFT KP_NUMBER_0  &kp LC(Y)       &kp DOWN_ARROW  &kp END          &kp HOME      &kp EQUAL    &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp LC(SPACE)
-&kp LCTRL                   &trans          &trans          &trans           &trans        &trans       &kp ENTER       &kp BACKSPACE                                                              &kp PIPE
+&kp ESCAPE               &kp LC(Z)       &kp UP_ARROW    &kp LC(Y)        &kp LC(V)                                  &kp CARET         &kp AMPERSAND      &mkp MB3        &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
+&mt LA(TAB) TAB          &kp LEFT_ARROW  &screenshot     &kp RIGHT_ARROW  &kp ASTERISK               &kp UNDERSCORE  &kp EXCLAMATION   &mkp MB1           &mo 6           &mkp MB2              &henkan
+&mt LA(TAB) KP_NUMBER_0  &kp LC(Y)       &kp DOWN_ARROW  &kp END          &kp HOME      &kp EQUAL    &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp LC(SPACE)
+&kp LCTRL                &trans          &trans          &trans           &trans        &trans       &kp ENTER       &kp BACKSPACE                                                              &kp PIPE
             >;
 
             sensor-bindings = <&scroll_up_down SCRL_DOWN SCRL_UP>;
