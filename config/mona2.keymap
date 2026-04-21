@@ -19,6 +19,12 @@
     flavor = "balanced";
 };
 
+&msc {
+    delay-ms = <0>;
+    time-to-max-speed-ms = <0>;
+    acceleration-exponent = <0>;
+};
+
 / {
     combos {
         compatible = "zmk,combos";
