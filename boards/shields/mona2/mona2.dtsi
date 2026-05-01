@@ -100,7 +100,7 @@
         compatible = "alps,ec11";
         a-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <24>;
+        steps = <80>;
         status = "disabled";
     };
 
@@ -122,6 +122,6 @@
         input-processors = 
             // 回転をスクロール信号に変換
             <&zip_xy_to_scroll_mapper>, 
-            <&zip_scroll_scaler 1 32>; 
+            <&zip_scroll_scaler 1 4>; 
     };
 };
