@@ -2,6 +2,8 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: cormoran    # <-- DYA Studio (custom ZMK fork + modules)
+      url-base: https://github.com/cormoran
     - name: sayu-hub
       url-base: https://github.com/sayu-hub
     - name: badjeff    # <-- PMW3610
@@ -9,14 +11,29 @@ manifest:
     # - name: sekigon-gonnoc  # <-- PAW3222
     #   url-base: https://github.com/sekigon-gonnoc
     - name: caksoylar  # <-- RGB LED
-      url-base: https://github.com/caksoylar  
+      url-base: https://github.com/caksoylar
     - name: zettaface  # <-- Input Processor Keybind
       url-base: https://github.com/zettaface
   projects:
+    # ── ZMK 本体は cormoran さんの DYA Studio 対応 fork に切替 ──
     - name: zmk
-      remote: zmkfirmware
-      revision: v0.3.0
+      remote: cormoran
+      revision: v0.3-branch+dya
       import: app/west.yml
+    # ── DYA Studio modules ──
+    - name: zmk-module-ble-management
+      remote: cormoran
+      revision: main
+    - name: zmk-module-battery-history
+      remote: cormoran
+      revision: main
+    - name: zmk-module-settings-rpc
+      remote: cormoran
+      revision: main
+    - name: zmk-module-runtime-input-processor
+      remote: cormoran
+      revision: main
+    # ── 既存モジュール ──
     - name: zmk-pmw3610-driver
       remote: badjeff
       revision: zmk-0.3

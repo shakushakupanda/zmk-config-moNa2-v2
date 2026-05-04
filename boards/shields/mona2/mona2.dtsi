@@ -89,11 +89,25 @@
     trackball_central_listener: trackball_central_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
-        input-processors = 
-            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>;         //Y軸反転
-            //<&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
-            //<&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
-            //<&zip_temp_layer 5 500>;                            //オートマウスレイヤーの選択
+        /* 旧: zip_xy_transform INPUT_TRANSFORM_Y_INVERT
+           DYA Studio で動的に編集できるよう runtime_input_processor へ移譲する */
+    };
+
+    /* ── DYA Studio: Runtime Input Processor ノード ── */
+    runtime_input_processor: runtime_input_processor {
+        compatible = "zmk,input-processor-runtime";
+        #input-args-cells = <0>;
+        /* デフォルトは Y軸反転 (元 dtsi の挙動を引き継ぐ) */
+        default-y-invert;
+    };
+
+    runtime_input_processor_scroll: runtime_input_processor_scroll {
+        compatible = "zmk,input-processor-runtime";
+        #input-args-cells = <0>;
+        mode = "scroll";
+        /* デフォルトは X軸反転 + 1/20スケール (元 overlay の挙動を引き継ぐ) */
+        default-x-invert;
+        default-scroll-divider = <20>;
     };
 
     left_encoder: encoder_left {
