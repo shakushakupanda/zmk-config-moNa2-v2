@@ -1,8 +1,12 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <input/processors.dtsi>
-#include <input/processors/runtime-input-processor.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <physical_layouts.dtsi>
+/* NOTE: <input/processors/runtime-input-processor.dtsi> は最終的に
+   modifiers.h を引き込み RC(keycode) を 1 引数で再定義するため、
+   このファイル内のマトリクス RC(row,col) と衝突する。
+   そのため runtime-input-processor.dtsi は overlay 側で
+   `#include "mona2.dtsi"` の後に include すること。 */
 
 / {
     chosen {

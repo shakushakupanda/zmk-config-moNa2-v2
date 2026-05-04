@@ -1,4 +1,8 @@
 #include "mona2.dtsi"
+/* mona2.dtsi 内で RC(row,col) のマトリクス展開が終わった後に include する
+   (LEFT 側でも runtime processor ノードを定義しないと
+   /runtime_input_processor が空ノード扱いになり processor-label エラーになるため) */
+#include <input/processors/runtime-input-processor.dtsi>
 
 &kscan0 {
         col-gpios
