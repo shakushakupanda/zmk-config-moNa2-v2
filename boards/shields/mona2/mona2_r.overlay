@@ -1,6 +1,5 @@
 #include "mona2.dtsi"
 #include <input/processors.dtsi>
-#include <input/processors/runtime_input_processor.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
 
@@ -66,18 +65,17 @@
 
 // Overrides for the input listener node
 // DYA Studio から動的に編集できるよう Runtime Input Processor で運用する
+// (ノードはモジュール側 runtime-input-processor.dtsi にプリセット済み)
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
 
-    /* デフォルトの軸変換 (旧: zip_xy_transform Y_INVERT) を runtime processor に委譲 */
-    input-processors = <&runtime_input_processor>;
+    /* マウス用 runtime processor (軸反転・スケールを DYA Studio から動的調整) */
+    input-processors = <&mouse_runtime_input_processor>;
 
     scroller {
         layers = <6 7>;          /* scroll_win / scroll_mac */
-        /* 旧: zip_xy_transform X_INVERT + zip_xy_to_scroll_mapper +
-               zip_scroll_transform X_INVERT + zip_scroll_scaler 1 20
-           を runtime processor (scroll専用) に置換 */
-        input-processors = <&runtime_input_processor_scroll>;
+        /* スクロール用 runtime processor (DYA Studio で divider 等を動的調整) */
+        input-processors = <&scroll_runtime_input_processor>;
     };
 };
