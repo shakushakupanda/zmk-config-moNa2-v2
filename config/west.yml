@@ -24,9 +24,10 @@ manifest:
     - name: zmk-module-ble-management
       remote: cormoran
       revision: main
-    - name: zmk-module-battery-history
-      remote: cormoran
-      revision: main
+    # zmk-module-battery-history は使わないので無効化
+    # - name: zmk-module-battery-history
+    #   remote: cormoran
+    #   revision: main
     - name: zmk-module-settings-rpc
       remote: cormoran
       revision: main
