@@ -33,6 +33,9 @@ manifest:
     - name: zmk-module-runtime-input-processor
       remote: cormoran
       revision: main
+    - name: zmk-behavior-runtime-sensor-rotate
+      remote: cormoran
+      revision: main
     # ── 既存モジュール ──
     - name: zmk-pmw3610-driver
       remote: badjeff
