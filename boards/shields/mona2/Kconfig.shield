@@ -3,3 +3,14 @@ config SHIELD_MONA2_R
 
 config SHIELD_MONA2_L
     def_bool $(shields_list_contains,mona2_l)
+
+config TRACKBALL_PAW3222
+    bool "Use PAW3222 sensor on mona2 instead of PMW3610"
+    depends on SHIELD_MONA2_R
+    default n
+    select PAW3222
+    help
+      When y, the right-half (central) firmware is built with the
+      PAW3222 trackball driver instead of the default PMW3610.
+      Pick the matching UF2 to flash depending on which sensor is
+      physically installed.

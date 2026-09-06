@@ -6,3 +6,4 @@ url: https://github.com/sayu-hub/zmk-config-moNa2.0
 requires: [seeeduino_xiao_ble]
 features:
   - keys
+  - studio

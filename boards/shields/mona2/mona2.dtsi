@@ -2,6 +2,11 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <physical_layouts.dtsi>
+/* NOTE: <input/processors/runtime-input-processor.dtsi> は最終的に
+   modifiers.h を引き込み RC(keycode) を 1 引数で再定義するため、
+   このファイル内のマトリクス RC(row,col) と衝突する。
+   そのため runtime-input-processor.dtsi は overlay 側で
+   `#include "mona2.dtsi"` の後に include すること。 */
 
 / {
     chosen {
@@ -89,11 +94,9 @@
     trackball_central_listener: trackball_central_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
-        input-processors = 
-            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>;         //Y軸反転
-            //<&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
-            //<&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
-            //<&zip_temp_layer 5 500>;                            //オートマウスレイヤーの選択
+        /* DYA Studio で動的に編集できるよう、入力プロセッサは
+           overlay 側で &mouse_runtime_input_processor /
+           &scroll_runtime_input_processor へ委譲する */
     };
 
     left_encoder: encoder_left {
@@ -114,14 +117,4 @@
         triggers-per-rotation = <24>;
     };
 
-    encoder_left_listener: encoder_left_listener {
-        compatible = "zmk,input-listener";
-        device = <&left_encoder>;
-        status = "okay";
-
-        input-processors = 
-            // 回転をスクロール信号に変換
-            <&zip_xy_to_scroll_mapper>, 
-            <&zip_scroll_scaler 1 4>; 
-    };
 };
