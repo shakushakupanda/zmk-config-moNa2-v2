@@ -14,20 +14,17 @@ DYA Studio は ZMK Studio をベースに、
 
 ## セットアップ方法
 
-### 1. リポジトリをForkする
+### 組み立て済みのmoNa2 v2を購入した場合
 
-1. このページ右上の **Fork** を押します。
-2. Fork先のリポジトリで **Actions** タブを開きます。
-3. GitHub Actionsが無効の場合は、**I understand my workflows, go ahead and enable them** を押して有効化します。
+DYA Studio対応ファームウェアは書き込み済みです。ファームウェアのビルドや書き込みは必要ありません。そのまま「[DYA Studio の使い方](#dya-studio-の使い方)」へ進み、キーマップを編集してください。
 
-### 2. ファームウェアをビルドする
+### ファームウェアを書き込む場合
 
-1. Fork先の **Actions** タブを開きます。
-2. `.github/workflows/build.yml` のワークフローを選択します。
-3. **Run workflow** を押して `main` ブランチのビルドを実行します。
-4. ビルド完了後、実行結果の **Artifacts** から `firmware` をダウンロードして展開します。
+通常はソースコードをFork／ビルドする必要はありません。
 
-主に次のUF2ファイルが生成されます。
+1. **[DYA Studio対応ファームウェア v1.0.0](https://github.com/shakushakupanda/zmk-config-moNa2-v2/releases/tag/dya-studio-v1.0.0)** を開きます。
+2. **Assets** から必要なUF2ファイルをダウンロードします。ZIP形式の場合は展開します。
+3. 右手側は、搭載しているトラックボールセンサーに合うUF2ファイルを選びます。
 
 | ファイル | 用途 |
 | --- | --- |
@@ -35,10 +32,6 @@ DYA Studio は ZMK Studio をベースに、
 | `mona2_r-paw3222.uf2` | 右手側・PAW3222版 |
 | `mona2_l-*.uf2` | 左手側 |
 | `settings_reset-*.uf2` | 保存済み設定の初期化 |
-
-右手側は、搭載しているトラックボールセンサーに合うファイルを選んでください。
-
-### 3. ファームウェアを書き込む
 
 左右それぞれで以下を行います。
 
@@ -60,14 +53,25 @@ ZMK v0.4系への移行により、以前のキーマップ、トラックボー
 
 設定リセットを行うと、保存済みキーマップやBluetoothペアリング情報は消去されます。
 
+### ファームウェア自体を変更する場合
+
+キーマップやDYA Studioから変更できる設定だけを編集する場合、Forkは不要です。ソースコード、デフォルトキーマップ、機能、ビルド設定など、ファームウェア自体を変更したい場合のみ次の手順でビルドします。
+
+1. このリポジトリを **Fork** します。
+2. Fork先の **Actions** タブを開きます。
+3. GitHub Actionsが無効の場合は、**I understand my workflows, go ahead and enable them** を押して有効化します。
+4. 必要なファイルを編集してcommitします。
+5. `.github/workflows/build.yml` のワークフローを選択します。
+6. **Run workflow** を押して `main` ブランチのビルドを実行します。
+7. ビルド完了後、実行結果の **Artifacts** から `firmware` をダウンロードして書き込みます。
+
 ## DYA Studio の使い方
 
-1. 本リポジトリをビルドし、生成された `mona2_r-...uf2`（中央側＝右手）と `mona2_l-...uf2`（周辺側＝左手）をそれぞれの XIAO BLE に書き込みます。
-2. 中央側（右手）を **USB ケーブル** で PC に接続します。
-3. Chrome / Edge などの WebUSB 対応ブラウザで **[https://studio.dya.cormoran.works/](https://studio.dya.cormoran.works/)** を開きます。
-4. キーボード側で `BLE` レイヤー(レイヤー10/11)を有効にし、右下に配置した **`&studio_unlock`** キーを押してアンロック。
-5. DYA Studio 側で「Connect」を押し、USB デバイスとして mona2 を選択。
-6. キーマップ／マクロ／コンボ／トラックボール設定を編集できます。
+1. 中央側（右手）を **USBケーブル** でPCに接続します。
+2. Chrome / EdgeなどのWebUSB対応ブラウザで **[DYA Studio](https://studio.dya.cormoran.works/)** を開きます。
+3. キーボード側で `BLE` レイヤー（レイヤー10/11）を有効にし、右下に配置した **`&studio_unlock`** キーを押してアンロックします。
+4. DYA Studio側で **Connect** を押し、USBデバイスとしてmoNa2を選択します。
+5. キーマップ／マクロ／コンボ／トラックボール設定を編集します。
 
 ### マクロを DYA Studio から使う
 
