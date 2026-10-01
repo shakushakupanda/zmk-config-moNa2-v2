@@ -82,12 +82,23 @@
    scroll_runtime_input_processor をスクロール変換器として上書き
    ────────────────────────────────────────────────────── */
 &scroll_runtime_input_processor {
+    /* Separate saved settings from the old scroll processor (different units). */
+        processor-label = "coast";
     x-codes = <INPUT_REL_X>;
     y-codes = <INPUT_REL_Y>;
     xy-to-scroll-enabled;
     active-layers = <0x000000C0>; /* layer6 + layer7 */
     scale-multiplier = <1>;
-    scale-divisor = <1>;   /* Studio UI の倍率がそのまま実効値 (1.0x基準)。固定減速は listener 側 zip_scroll_scaler */
+    /* Scale physical input and generated inertia in the same processor. */
+    scale-divisor = <60>;
+    inertia-enabled;
+    inertia-window-ms = <120>;
+    inertia-interval-ms = <16>;
+    inertia-threshold = <3>;
+    inertia-decay-percent = <12>;
+    inertia-normal-max-output = <2>;
+    inertia-fast-threshold = <0>;
+    inertia-fast-output-percent = <100>;
 };
 
 &mouse_runtime_input_processor {
@@ -113,7 +124,8 @@
     };
     inertial_scroll: inertial_scroll {
         compatible = "zmk,input-processor-inertial-scroll";
-        status = "okay";
+        /* Use runtime-processor inertia only; never stack two engines. */
+        status = "disabled";
         #input-processor-cells = <0>;
     };
 
@@ -122,8 +134,7 @@
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
-    /* Keep scroll independent of pointer scaling. Emit one step per 60
-     * counts: gentler than 1/40, while retaining a lower onset threshold
-     * than the original 1/100. Fractional counts are accumulated. */
-    input-processors = <&mg &scroll_runtime_input_processor &mouse_runtime_input_processor &zip_scroll_scaler 1 60 &inertial_scroll>;
+    /* Runtime scroll owns the 1/60 scale for both physical and inertial input.
+     * A downstream scaler would be bypassed by generated inertia. */
+    input-processors = <&mg &scroll_runtime_input_processor &mouse_runtime_input_processor>;
 };
