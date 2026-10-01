@@ -87,7 +87,7 @@
     xy-to-scroll-enabled;
     active-layers = <0x000000C0>; /* layer6 + layer7 */
     scale-multiplier = <1>;
-    scale-divisor = <1>;   /* Studio UI の倍率がそのまま実効値 (1.0x基準)。固定減速は listener 側 zip_scroll_scaler */
+    scale-divisor = <1>;   /* Studio UI の倍率がそのまま実効値 (1.0x基準)。固定減速は inertial_scroll の input-divisor */
 };
 
 &mouse_runtime_input_processor {
@@ -113,17 +113,23 @@
     };
     inertial_scroll: inertial_scroll {
         compatible = "zmk,input-processor-inertial-scroll";
+        input-divisor = <60>;
+        scroll-layers = <6 7>;
         status = "okay";
         #input-processor-cells = <0>;
     };
 
+    inertial_scroll_output_listener {
+        compatible = "zmk,input-listener";
+        device = <&inertial_scroll>;
+        input-processors = <&inertial_scroll>;
+    };
 };
 
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
-    /* Keep scroll independent of pointer scaling. Emit one step per 60
-     * counts: gentler than 1/40, while retaining a lower onset threshold
-     * than the original 1/100. Fractional counts are accumulated. */
-    input-processors = <&mg &scroll_runtime_input_processor &mouse_runtime_input_processor &zip_scroll_scaler 1 60 &inertial_scroll>;
+    /* Keep raw fractions until the final HID step. The inertia processor owns
+     * the 1/60 scaling and routes timed output through the input thread. */
+    input-processors = <&mg &scroll_runtime_input_processor &mouse_runtime_input_processor &inertial_scroll>;
 };
