@@ -122,5 +122,8 @@
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
-    input-processors = <&mg &mouse_runtime_input_processor &scroll_runtime_input_processor &zip_scroll_scaler 1 100 &inertial_scroll>;
+    /* Convert scroll before pointer scaling so mouse sensitivity does not
+     * delay scroll onset. Keep fractional counts; emit one step per 40
+     * counts instead of 100 (2.5x the previous base scroll sensitivity). */
+    input-processors = <&mg &scroll_runtime_input_processor &mouse_runtime_input_processor &zip_scroll_scaler 1 40 &inertial_scroll>;
 };
