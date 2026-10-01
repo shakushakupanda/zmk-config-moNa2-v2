@@ -135,6 +135,6 @@ manifest:
       revision: suppress-cursor-while-active
     - name: zmk-module-mouse-gesture-rpc
       remote: shakushakupanda
-      revision: 04b7847339ccbfcf15f2d8ef65e1a82bde14be25 # test/flick-only-inertia
+      revision: c4a52848f5b7a6094da215b155882c72de9fcca9 # test/flick-only-inertia
   self:
     path: config
