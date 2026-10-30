@@ -6,4 +6,6 @@ on: [push, pull_request, workflow_dispatch]
 #       想定しており、`xiao_ble/nrf52840/zmk` ではビルドできない。
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    # クラッシュ解析用に zmk.elf も出力する自前版を使う
+    # (元に戻すときは下の行を zmkfirmware/zmk/.github/workflows/build-user-config.yml@main に戻す)
+    uses: ./.github/workflows/build-user-config-elf.yml
